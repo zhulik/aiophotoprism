@@ -5,9 +5,17 @@ class PhotoprismError(Exception):
     """Base Photoprism Exception class."""
 
 
-class UnauthorizedError(PhotoprismError):
+class PhotoprismUnauthorizedError(PhotoprismError):
     """When the server does not accept the API token."""
 
 
-class NotFoundError(PhotoprismError):
+class PhotoprismNotFoundError(PhotoprismError):
     """When the server responds with 404."""
+
+
+class PhotoprismTimeoutError(PhotoprismError):
+    """When request times out."""
+
+
+class PhotoprismBadRequestError(PhotoprismError):
+    """When the server responds with 400."""

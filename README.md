@@ -1,10 +1,80 @@
 # aiophotoprism
 
+Asynchronous Python client for the [Photoprism](https://photoprism.app/)
+
+**Warning**: [Photoprism API](https://docs.photoprism.org/developer-guide/frontend/rest-api/) is not stable yet, 
+use on your own risk
+
+NOTE: The package is in active development. *Not all features of the API are implemented.*
+
+## Installation
+`pip install aiophotoprism`
+
+
+## Usage
+
+```python
+import asyncio
+
+from aiophotoprism import Photoprism
+
+async def main():
+
+  async with Photoprism("username", "password") as client:
+    # interact with the client here
+    pass
+
+if __name__ == "__main__":
+  asyncio.run(main())
+```
+
+### Photoprism
+Photoprism is the entrypoint class, it acts as an async context manager and provides access to API endpoints.
+
+#### Initialization
+
+```python
+    def __init__(
+        self,
+        username, # your username
+        password, # your password
+        url="http://127.0.0.1:2342", # A base URL of the server, https://syncthing.example.com:443/something is also possible
+        timeout=DEFAULT_TIMEOUT, # Timeout in seconds
+        verify_ssl=True, # Perform SSL verification
+        loop=None, # event loop
+        session=None # client session,
+    )...
+```
+
+#### Photos
+
+Returns list of photos.
+
+```python
+await client.photos(count=50)
+```
+
+#### Config
+
+Returns Photoprism instance config.
+
+```python
+await client.config()
+```
+
+#### Index
+
+Forces the Photoprism instance to index photos. Complete scan is not supported.
+
+```python
+await client.index()
+```
+
 ## License
 
 MIT License
 
-Copyright (c) 2020 Gleb Sinyavskiy
+Copyright (c) 2021 Gleb Sinyavskiy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -4,8 +4,15 @@ import asyncio
 
 import aiohttp
 from yarl import URL
+from .dictobject import dictobject
 
-from .exceptions import NotFoundError, PhotoprismError, UnauthorizedError
+from .exceptions import (
+    PhotoprismNotFoundError,
+    PhotoprismError,
+    PhotoprismUnauthorizedError,
+    PhotoprismTimeoutError,
+    PhotoprismBadRequestError,
+)
 
 
 class API:
@@ -17,7 +24,7 @@ class API:
         self,
         username,
         password,
-        url="http://127.0.0.1:8384",
+        url="http://127.0.0.1:2342",
         timeout=DEFAULT_TIMEOUT,
         verify_ssl=True,
         loop=None,
@@ -49,24 +56,31 @@ class API:
                 }
             else:
                 kwargs["headers"] = {"X-Session-ID": await self.session_id()}
-            return await self.raw_request(*args, **kwargs)
+            return dictobject(await self.raw_request(*args, **kwargs))
         except aiohttp.client_exceptions.ClientResponseError as error:
             if error.status in [401, 403]:
-                raise UnauthorizedError from error
+                raise PhotoprismUnauthorizedError from error
             if error.status == 404:
-                raise NotFoundError from error
+                raise PhotoprismNotFoundError from error
+            if error.status == 400:
+                raise PhotoprismBadRequestError from error
             raise PhotoprismError from error
+        except asyncio.exceptions.TimeoutError as error:
+            raise PhotoprismTimeoutError from error
         except Exception as error:
             raise PhotoprismError from error
 
-    async def raw_request(self, uri, params=None, data=None, headers={}, method="GET"):
+    async def raw_request(
+        self, uri, params=None, data=None, headers={}, method="GET", timeout=None
+    ):
         """Perform request."""
+        timeout = timeout or self._timeout
         async with self._session.request(
             method,
             self._url.join(URL(uri)).update_query(params),
             json=data,
             headers={**{"Accept": "application/json"}, **headers},
-            timeout=self._timeout,
+            timeout=timeout,
             verify_ssl=self._verify_ssl,
         ) as response:
             response.raise_for_status()
