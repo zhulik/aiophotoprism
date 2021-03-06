@@ -8,7 +8,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="aiophotoprism",
-    version="0.4.1",
+    version="0.1.0",
     author="Gleb Sinyavskiy",
     author_email="zhulik.gleb@gmail.com",
     description="Asynchronous Python client for the Photoprism REST API",
