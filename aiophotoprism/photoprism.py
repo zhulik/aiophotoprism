@@ -3,7 +3,7 @@
 import aiohttp
 
 from .api import API
-from .exceptions import PhotoprismTimeoutError, PhotoprismBadRequestError
+from .exceptions import PhotoprismBadRequestError, PhotoprismTimeoutError
 
 
 class Photoprism:

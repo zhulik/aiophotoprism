@@ -2,7 +2,7 @@
 
 Asynchronous Python client for the [Photoprism](https://photoprism.app/)
 
-**Warning**: [Photoprism API](https://docs.photoprism.org/developer-guide/frontend/rest-api/) is not stable yet, 
+**Warning**: [Photoprism API](https://docs.photoprism.org/developer-guide/frontend/rest-api/) is not stable yet,
 use on your own risk
 
 NOTE: The package is in active development. *Not all features of the API are implemented.*
