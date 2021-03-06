@@ -71,10 +71,11 @@ class API:
             raise PhotoprismError from error
 
     async def raw_request(
-        self, uri, params=None, data=None, headers={}, method="GET", timeout=None
+        self, uri, params=None, data=None, headers=None, method="GET", timeout=None
     ):
         """Perform request."""
         timeout = timeout or self._timeout
+        headers = headers or {}
         async with self._session.request(
             method,
             self._url.join(URL(uri)).update_query(params),

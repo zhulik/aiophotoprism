@@ -7,10 +7,9 @@ def dictobject(value):
     """Wrap value into a DictObject if needed."""
     if isinstance(value, dict):
         return DictObject(**value)
-    elif isinstance(value, list):
-        return list(map(lambda x: dictobject(x), value))
-    else:
-        return value
+    if isinstance(value, list):
+        return list(map(dictobject, value))
+    return value
 
 
 class DictObject:
