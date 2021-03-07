@@ -48,10 +48,3 @@ class DictObject:
     def items(self):
         """Return items of the object."""
         return [(k, dictobject(v)) for k, v in self.__data.items()]
-
-
-if __name__ == "__main__":
-    obj = dictobject({"a": 1, "b": [{"c": 3}]})
-    for k, v in obj.items():
-        print(k)
-        print(v)
