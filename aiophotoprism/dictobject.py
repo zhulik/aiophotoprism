@@ -44,3 +44,7 @@ class DictObject:
     def __repr__(self):
         """Represent object as string."""
         return f"<DictOBject data={json.dumps(self.__data, indent=4) }>"
+
+    def items(self):
+        """Return items of the object."""
+        return [(k, dictobject(v)) for k, v in self.__data.items()]
