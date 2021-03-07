@@ -1,8 +1,9 @@
 """Test helper functions."""
 
 import pytest
-from aiophotoprism import Photoprism
 from aioresponses import aioresponses as responses
+
+from aiophotoprism import Photoprism
 
 
 @pytest.fixture
