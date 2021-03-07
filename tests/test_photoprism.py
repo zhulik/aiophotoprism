@@ -1,9 +1,8 @@
 """Tests for Photoprism."""
 
 import pytest
-from expects import be_a, expect
-
 from aiophotoprism import Photoprism
+from expects import be_a, expect
 
 
 @pytest.mark.asyncio
