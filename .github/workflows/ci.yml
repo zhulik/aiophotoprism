@@ -26,7 +26,7 @@ jobs:
           pipenv sync --dev
       - name: Run pre-commit on all files
         run: |
-          pre-commit run --all-files --show-diff-on-failure
+          pipenv run pre-commit run --all-files --show-diff-on-failure
   test:
     name: Python ${{ matrix.python }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}-latest
