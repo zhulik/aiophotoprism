@@ -16,7 +16,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/zhulik/aiophotoprism",
     license="The MIT License",
-    install_requires=["aiohttp==3.7.4", "yarl==1.6.3"],
+    install_requires=["aiohttp>=3.7.4,<4.0.0", "yarl>=1.6.3,<2.0.0"],
     packages=["aiophotoprism"],
     package_dir={"aiophotoprism": "aiophotoprism"},
     include_package_data=True,
@@ -30,6 +30,5 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
-        "Topic :: System :: Archiving :: Mirroring",
     ],
 )
