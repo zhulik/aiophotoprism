@@ -5,11 +5,11 @@ Asynchronous Python client for the [Photoprism](https://photoprism.app/)
 **Warning**: [Photoprism API](https://docs.photoprism.org/developer-guide/frontend/rest-api/) is not stable yet,
 use on your own risk
 
-NOTE: The package is in active development. *Not all features of the API are implemented.*
+NOTE: The package is in active development. _Not all features of the API are implemented._
 
 ## Installation
-`pip install aiophotoprism`
 
+`pip install aiophotoprism`
 
 ## Usage
 
@@ -29,6 +29,7 @@ if __name__ == "__main__":
 ```
 
 ### Photoprism
+
 Photoprism is the entrypoint class, it acts as an async context manager and provides access to API endpoints.
 
 #### Initialization
@@ -38,7 +39,7 @@ Photoprism is the entrypoint class, it acts as an async context manager and prov
         self,
         username, # your username
         password, # your password
-        url="http://127.0.0.1:2342", # A base URL of the server, https://syncthing.example.com:443/something is also possible
+        url="http://127.0.0.1:2342", # A base URL of the server, https://photoprism.example.com:443/something is also possible
         timeout=DEFAULT_TIMEOUT, # Timeout in seconds
         verify_ssl=True, # Perform SSL verification
         loop=None, # event loop
