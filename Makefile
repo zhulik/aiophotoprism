@@ -19,7 +19,7 @@ pylint:
 lint: pylint flake8 isort black
 
 test:
-	pipenv run pytest --cov=aiophotoprism --cov-report=html
+	pipenv run pytest
 
 check: lint test
 

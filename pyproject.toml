@@ -10,3 +10,10 @@ extend-exclude = '''
 [tool.isort]
 line_length=120
 profile="black"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-s -ra -q --cov=aiophotoprism --cov-report=html"
+testpaths = [
+    "tests"
+]
