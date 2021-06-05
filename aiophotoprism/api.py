@@ -15,12 +15,12 @@ from .exceptions import (
 )
 
 
-class API:
+class API:  # pylint: disable=too-many-instance-attributes
     """Low level client."""
 
     DEFAULT_TIMEOUT = 10
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-arguments
         self,
         username,
         password,
@@ -72,7 +72,7 @@ class API:
 
     async def raw_request(
         self, uri, params=None, data=None, headers=None, method="GET", timeout=None
-    ):
+    ):  # pylint: disable=too-many-arguments
         """Perform request."""
         timeout = timeout or self._timeout
         headers = headers or {}
@@ -85,10 +85,7 @@ class API:
             verify_ssl=self._verify_ssl,
         ) as response:
             response.raise_for_status()
-            if (
-                "Content-Type" in response.headers
-                and "application/json" in response.headers["Content-Type"]
-            ):
+            if "Content-Type" in response.headers and "application/json" in response.headers["Content-Type"]:
                 return await response.json()
             return await response.read()
 
