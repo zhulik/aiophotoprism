@@ -26,7 +26,7 @@ jobs:
           pipenv sync --dev
       - name: Run pre-commit on all files
         run: |
-          pipenv run pre-commit run --all-files --show-diff-on-failure
+          make lint
   test:
     name: Python ${{ matrix.python }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}-latest
@@ -52,7 +52,7 @@ jobs:
           python -m pip install --upgrade pip pipenv setuptools wheel
           pipenv sync --dev
       - name: Pytest with coverage reporting
-        run: pipenv run pytest --cov=aiophotoprism --cov-report=xml
+        run: make test
   publish:
     name: Publish a Python distribution to PyPI
     runs-on: ubuntu-latest
